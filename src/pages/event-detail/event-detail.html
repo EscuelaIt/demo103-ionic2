@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Evento: {{ event.title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1>{{ event.title }}</h1>
+  <p>{{ event.text }}</p>
+  <img [src]="event.img" alt="">
+  <ion-list>
+    <ion-item>
+      <ion-icon name="time" item-left></ion-icon>
+      {{ event.time | date:'shortTime' }}
+    </ion-item>
+    <ion-item>
+      <ion-icon name="people" item-left></ion-icon>
+      {{ event.people }} asistenes
+    </ion-item>
+    <ion-item>
+      <ion-icon name="map" item-left></ion-icon>
+      {{ event.place }}
+    </ion-item>
+  </ion-list>
+</ion-content>
