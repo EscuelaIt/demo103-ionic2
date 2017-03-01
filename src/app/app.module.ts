@@ -6,6 +6,8 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { RegisterPage } from '../pages/register/register';
 import { InvitePage } from '../pages/invite/invite';
 import { EventDetailPage } from '../pages/event-detail/event-detail';
+import { ProfilePage } from '../pages/profile/profile';
+import { SettingsPage } from '../pages/settings/settings';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { EventDetailPage } from '../pages/event-detail/event-detail';
     TutorialPage,
     RegisterPage,
     InvitePage,
-    EventDetailPage
+    EventDetailPage,
+    ProfilePage,
+    SettingsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,7 +30,9 @@ import { EventDetailPage } from '../pages/event-detail/event-detail';
     TutorialPage,
     RegisterPage,
     InvitePage,
-    EventDetailPage
+    EventDetailPage,
+    ProfilePage,
+    SettingsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
