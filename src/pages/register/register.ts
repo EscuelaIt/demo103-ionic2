@@ -10,6 +10,8 @@ import { TutorialPage } from '../tutorial/tutorial';
 })
 export class RegisterPage {
 
+  myPage = TutorialPage;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ModalController, ActionSheetController } from 'ionic-angular';
+
+import { GalleryPage } from '../gallery/gallery';
 
 @Component({
   selector: 'page-event-detail',
@@ -12,13 +14,20 @@ export class EventDetailPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public modalCtrl: ModalController,
+    public actionCtrl: ActionSheetController
   ) {
     this.event = this.navParams.get('event');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventDetailPage');
+  }
+
+  openGallery(){
+    let modal = this.modalCtrl.create( GalleryPage );
+    modal.present();
   }
 
   showAlert(){
@@ -45,6 +54,32 @@ export class EventDetailPage {
     alert.onDidDismiss(data =>{
       console.log('cerro');
     })
+  }
+
+  showActionSheet(){
+    let action = this.actionCtrl.create({
+      buttons: [
+        {
+          text: 'Asistir',
+          icon: 'home',
+          handler: () => {
+            console.log('Destructive clicked');
+          }
+        },{
+          text: 'Share',
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    action.present();
   }
 
 }

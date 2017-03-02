@@ -7,14 +7,4 @@
 		</ion-list>
 	</ion-content>
 </ion-menu>
-
-<ion-menu id="user" [content]="content">
-	<ion-content>
-		<ion-list>
-			<button *ngFor="let page of pages" ion-item menuClose (click)="openPage( page )">
-				{{ page.title }}
-			</button>
-		</ion-list>
-	</ion-content>
-</ion-menu>
 <ion-nav #content [root]="rootPage"></ion-nav>

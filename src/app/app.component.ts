@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
 import { SettingsPage } from '../pages/settings/settings';
 import { InvitePage } from '../pages/invite/invite';
+import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ export class MyApp {
   pages: any[] =[
     {
       title: 'Home',
-      component: HomePage
+      component: TabsPage
     },
     {
       title: 'Profile',
@@ -32,16 +33,12 @@ export class MyApp {
     }
   ]
 
-  rootPage: any = HomePage;
+  rootPage: any = TabsPage;
 
   constructor(
     menuCtrl: MenuController,
     platform: Platform
     ) {
-
-      menuCtrl.enable(true, 'admin');
-      menuCtrl.enable(false, 'user');
-
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

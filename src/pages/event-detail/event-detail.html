@@ -10,12 +10,22 @@
 <ion-content padding>
   <h1>{{ event.title }}</h1>
   <p>{{ event.text }}</p>
-  <img [src]="event.img" alt="">
+  <img [src]="event.img" alt="" (click)="openGallery()">
   <ion-list>
-    <ion-item>
-      <ion-icon name="time" item-left></ion-icon>
-      {{ event.time | date:'shortTime' }}
-    </ion-item>
+    <ion-item-sliding>
+      <ion-item>
+        <ion-icon name="time" item-left></ion-icon>
+        {{ event.time | date:'shortTime' }}
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button (click)="favorite(item)">Favorite</button>
+        <button ion-button color="danger" (click)="share(item)">Share</button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button (click)="unread(item)">Unread</button>
+      </ion-item-options>
+    </ion-item-sliding>
+    
     <ion-item>
       <ion-icon name="people" item-left></ion-icon>
       {{ event.people }} asistenes
@@ -26,4 +36,5 @@
     </ion-item>
   </ion-list>
   <button ion-button color="danger" (click)="showAlert()">Si voy a asitir</button>
+  <button ion-button color="twitter" (click)="showActionSheet()">mostrar</button>
 </ion-content>
