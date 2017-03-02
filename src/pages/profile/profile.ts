@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { EventsPage } from '../events/events'
+import { MyEventsPage } from '../my-events/my-events'
+import { PastEventsPage } from '../past-events/past-events'
+import { HomePage } from '../home/home'
 
-/*
-  Generated class for the Profile page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
-  selector: 'page-profile',
+  selector: 'page-tabs',
   templateUrl: 'profile.html'
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  tab1Root: any = HomePage;
+  tab2Root: any = MyEventsPage;
+  tab3Root: any = PastEventsPage;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+  constructor(public navCtrl: NavController) {
+
   }
 
 }
