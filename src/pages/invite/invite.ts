@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 
@@ -9,7 +9,11 @@ import { HomePage } from '../home/home';
 })
 export class InvitePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public platform: Platform
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InvitePage');
@@ -20,7 +24,12 @@ export class InvitePage {
   }
 
   intro(){
-    this.navCtrl.setRoot(HomePage);
+    if(this.platform.is('ios')){
+      this.navCtrl.setRoot(HomePage);
+    }else{
+      this.navCtrl.setRoot(HomePage);
+    }
+    
   }
 
 }

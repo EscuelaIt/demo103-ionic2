@@ -6,7 +6,7 @@ import { PastEventsPage } from '../past-events/past-events'
 import { HomePage } from '../home/home'
 
 @Component({
-  selector: 'page-tabs',
+  selector: 'page-profile',
   templateUrl: 'profile.html'
 })
 export class ProfilePage {
