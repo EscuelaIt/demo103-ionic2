@@ -33,7 +33,7 @@ export class MyApp {
     }
   ]
 
-  rootPage: any = TabsPage;
+  rootPage: any = TutorialPage;
 
   constructor(
     menuCtrl: MenuController,

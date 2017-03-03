@@ -11,6 +11,7 @@ import { TutorialPage } from '../tutorial/tutorial';
 export class RegisterPage {
 
   myPage = TutorialPage;
+  newUser: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
@@ -28,6 +29,10 @@ export class RegisterPage {
 
   goToBack(){
     this.navCtrl.pop();
+  }
+
+  saveData(){
+    console.log( this.newUser );
   }
 
 }
