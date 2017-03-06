@@ -5,26 +5,42 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <h1>register</h1>
   <button ion-button color="secondary" (click)="goToInvitePage()">Invitar</button>
   <button ion-button color="danger" (click)="goToTutorialPage()">tutorial</button>
   <button ion-button color="dark" (click)="goToBack()">back</button>
 
-  <form novalidate (ngSubmit)="saveData()">
+  <form novalidate [formGroup]="registerForm" (ngSubmit)="saveData()">
     <ion-list>
       <ion-grid no-padding>
         <ion-row no-padding>
-          <ion-col>
+          <ion-col width-50>
             <ion-item>
               <ion-label stacked>Nombre:</ion-label>
-              <ion-input [(ngModel)]="newUser.name" [ngModelOptions]="{standalone: true}" type="text" placeholder="Su nombre"></ion-input>
+              <ion-input formControlName="name" type="text" placeholder="Su nombre"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="registerForm.get('name').errors && registerForm.get('name').dirty">
+              <p color="danger" *ngIf="registerForm.get('name').hasError('required')">
+                Este campo es requerido
+              </p>
+              <p color="danger" *ngIf="registerForm.get('name').hasError('pattern')">
+                No es valido
+              </p>
             </ion-item>
           </ion-col>
-          <ion-col>
+          <ion-col width-50>
             <ion-item>
               <ion-label stacked>Apodo:</ion-label>
-              <ion-input [(ngModel)]="newUser.nickname" [ngModelOptions]="{standalone: true}" type="text" placeholder="Su apodo"></ion-input>
+              <ion-input formControlName="nickname" type="text" placeholder="Su apodo"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="registerForm.get('nickname').errors && registerForm.get('nickname').dirty">
+              <p color="danger" *ngIf="registerForm.get('nickname').hasError('required')">
+                Este campo es requerido
+              </p>
+              <p color="danger" *ngIf="registerForm.get('nickname').hasError('maxlength')">
+                Te pasaste
+              </p>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -32,11 +48,47 @@
       
       <ion-item>
         <ion-label stacked>Apellido:</ion-label>
-        <ion-input type="text" [(ngModel)]="newUser.lastname" [ngModelOptions]="{standalone: true}" placeholder="Su apellido"></ion-input>
+        <ion-input max="8" type="number" formControlName="lastname" placeholder="Su apellido" clearInput></ion-input>
+      </ion-item>
+      <ion-item *ngIf="registerForm.get('lastname').errors && registerForm.get('lastname').dirty">
+        <p color="danger" *ngIf="registerForm.get('lastname').hasError('required')">
+          Este campo es requerido
+        </p>
+        <p color="danger" *ngIf="registerForm.get('lastname').hasError('minlength')">
+          te falta
+        </p>
+        <p color="danger" *ngIf="registerForm.get('lastname').hasError('maxlength')">
+          te pasaste
+        </p>
+      </ion-item>
+      <div formGroupName="passwordGroup">
+        <ion-item>
+          <ion-label stacked>Password:</ion-label>
+          <ion-input type="password" formControlName="password" placeholder="Su apellido" clearInput></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Confirmar Password:</ion-label>
+          <ion-input type="password" formControlName="repeatPassword" placeholder="Su apellido" clearInput></ion-input>
+        </ion-item>
+        <ion-item *ngIf="registerForm.get('passwordGroup').errors && registerForm.get('passwordGroup').dirty">
+          <p>No coinciden</p>
+        </ion-item>
+      </div>
+      <ion-item>
+        <ion-label stacked>Edad:</ion-label>
+        <ion-input type="number" formControlName="age" placeholder="Digite su edad" clearInput></ion-input>
+      </ion-item>
+      <ion-item *ngIf="registerForm.get('age').errors && registerForm.get('age').dirty">
+        <p color="danger" *ngIf="registerForm.get('age').hasError('required')">
+          Este campo es requerido
+        </p>
+        <p color="danger" *ngIf="registerForm.get('age').hasError('young')">
+          Eres muy joven
+        </p>
       </ion-item>
       <ion-item>
         <ion-label>Serie:</ion-label>
-        <ion-select>
+        <ion-select formControlName="serie">
           <ion-option value="1">Black mirror</ion-option>
           <ion-option value="2">Naruto Naruto Naruto Naruto Naruto</ion-option>
           <ion-option value="3">Otra serie</ion-option>
@@ -45,17 +97,17 @@
       </ion-item>
       <ion-item>
         <ion-label>Cuantos hijos</ion-label>
-        <ion-range min="-10" max="10" pin="true">
+        <ion-range formControlName="children" min="-10" max="10" pin="true">
           <ion-label range-left>-10</ion-label>
           <ion-label range-right>10</ion-label>
         </ion-range>
       </ion-item>
       <ion-item>
         <ion-label>cumpleaños</ion-label>
-        <ion-datetime ></ion-datetime>
+        <ion-datetime formControlName="date"></ion-datetime>
       </ion-item>
     </ion-list>
-    <ion-list radio-group>
+    <ion-list radio-group formControlName="language">
       <ion-list-header>
         Language
       </ion-list-header>
@@ -118,7 +170,7 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <button ion-button block type="submit">Enviar</button>
+          <button ion-button block type="submit" [disabled]="registerForm.invalid">Enviar</button>
         </ion-col>
         <ion-col>
           <button ion-button block type="button">Limpiar</button>
