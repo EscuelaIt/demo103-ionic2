@@ -13,6 +13,14 @@ import { EventsPage } from '../pages/events/events';
 import { MyEventsPage } from '../pages/my-events/my-events';
 import { PastEventsPage } from '../pages/past-events/past-events';
 import { GalleryPage } from '../pages/gallery/gallery';
+import { UsersPage } from '../pages/users/users';
+
+import { UserService } from '../providers/user-service';
+import { TasksService } from '../providers/tasks-service';
+
+import { TabTasksPage } from '../pages/tab-tasks/tab-tasks';
+import { TasksPage } from '../pages/tasks/tasks';
+import { TasksDonePage } from '../pages/tasks-done/tasks-done';
 
 
 const config = {
@@ -39,7 +47,11 @@ const config = {
     EventsPage,
     MyEventsPage,
     PastEventsPage,
-    GalleryPage
+    GalleryPage,
+    UsersPage,
+    TabTasksPage,
+    TasksPage,
+    TasksDonePage
   ],
   imports: [
     IonicModule.forRoot(MyApp, config)
@@ -58,8 +70,16 @@ const config = {
     EventsPage,
     MyEventsPage,
     PastEventsPage,
-    GalleryPage
+    GalleryPage,
+    UsersPage,
+    TabTasksPage,
+    TasksPage,
+    TasksDonePage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserService,
+    TasksService
+  ]
 })
 export class AppModule {}
