@@ -1,0 +1,30 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>tasks</ion-title>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <button ion-button (click)="createTask()">Crear Tarea</button>
+  <ion-list>
+    <ion-item-sliding *ngFor="let task of tasks; let i = index">
+      <ion-item >
+        <ion-label>{{task.title}}</ion-label>
+        <ion-checkbox (ionChange)="editTask( task )" [checked]="task.completed"></ion-checkbox>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteTask( task, i )">
+          <ion-icon name="trash"></ion-icon>
+          Borrar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
