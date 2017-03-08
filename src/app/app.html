@@ -4,6 +4,9 @@
 			<button *ngFor="let page of pages" ion-item menuClose (click)="openPage( page )">
 				{{ page.title }}
 			</button>
+			<button ion-item menuClose (click)="logout()">
+				Cerrar
+			</button>
 		</ion-list>
 	</ion-content>
 </ion-menu>

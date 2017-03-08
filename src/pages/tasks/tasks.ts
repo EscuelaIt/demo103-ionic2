@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { TasksService } from '../../providers/tasks-service';
+import { TasksServiceStorage } from '../../providers/tasks-service-storage';
 
 @Component({
   selector: 'page-tasks',
@@ -15,6 +16,7 @@ export class TasksPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public tasksService: TasksService,
+    public tasksServiceStorage: TasksServiceStorage,
     public alertCtrl: AlertController
   ) {}
 
@@ -47,9 +49,14 @@ export class TasksPage {
               "title": data.title,
               "completed": false
             }
-            this.tasksService.create( task )
+            /*this.tasksService.create( task )
             .then(data =>{
               this.tasks.unshift( data );
+            })*/
+            this.tasks.push(task);
+            this.tasksServiceStorage.create( this.tasks )
+            .then(data =>{
+              //this.tasks.unshift( data );
             })
           }
         }
@@ -59,11 +66,11 @@ export class TasksPage {
   }
 
   editTask(task){
-    task.completed = true;
     task.title = 'nuevo titulo';
+    console.log('tarea',task);
     this.tasksService.update(task)
     .then(data => {
-      console.log(data);
+      //console.log(data);
     })
   }
 
@@ -76,9 +83,17 @@ export class TasksPage {
   }
 
   private getAllTasks(){
-    this.tasksService.getAll()
+    /*this.tasksService.getAll()
     .then((tasks: any[]) =>{
       this.tasks = tasks;
+    })*/
+    this.tasksServiceStorage.getAll()
+    .then((tasks: any[]) =>{
+      console.log('resuslt', tasks);
+      this.tasks = tasks;
+    })
+    .catch(error =>{
+      console.log(error)
     })
   }
 

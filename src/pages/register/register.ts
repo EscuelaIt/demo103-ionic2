@@ -6,6 +6,7 @@ import { InvitePage } from '../invite/invite';
 import { TutorialPage } from '../tutorial/tutorial';
 
 import { MyValidators } from '../../validators/validators';
+import { AuthService } from '../../providers/auth-service';
 
 @Component({
   selector: 'page-register',
@@ -20,9 +21,11 @@ export class RegisterPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public authService: AuthService
   ) {
     this.registerForm = this.fb.group({
+      'email': [''],
       'name': ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{1,}$/)]],
       'nickname': ['', [Validators.required, Validators.maxLength(8)]],
       'lastname': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
@@ -66,7 +69,9 @@ export class RegisterPage {
   saveData(){
     if(this.registerForm.valid){
       console.log( this.registerForm.value );
-      this.goToInvitePage();
+      let email = this.registerForm.value.email;
+      let password = this.registerForm.value.passwordGroup.repeatPassword;
+      this.authService.register(email, password);
     }
   }
 

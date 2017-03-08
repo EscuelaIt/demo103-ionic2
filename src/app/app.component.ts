@@ -10,6 +10,8 @@ import { InvitePage } from '../pages/invite/invite';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TabTasksPage } from '../pages/tab-tasks/tab-tasks';
 
+import { AngularFireAuth } from 'angularfire2';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -34,22 +36,38 @@ export class MyApp {
     }
   ]
 
-  rootPage: any = TabTasksPage;
+  rootPage: any = TutorialPage;
 
   constructor(
     menuCtrl: MenuController,
-    platform: Platform
+    platform: Platform,
+    public authFire: AngularFireAuth
     ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+      this.listerStateAuth();
     });
   }
 
   openPage( page ){
     this.rootPage = page.component;
+  }
+
+  logout(){
+    this.authFire.logout();
+  }
+
+  private listerStateAuth(){
+    this.authFire.subscribe(session=>{
+      if(session){
+        this.rootPage = TabTasksPage;
+      }else{
+        this.rootPage = TutorialPage;
+      }
+    })
   }
 
 }

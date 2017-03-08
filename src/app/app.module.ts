@@ -14,14 +14,33 @@ import { MyEventsPage } from '../pages/my-events/my-events';
 import { PastEventsPage } from '../pages/past-events/past-events';
 import { GalleryPage } from '../pages/gallery/gallery';
 import { UsersPage } from '../pages/users/users';
+import { LoginPage } from '../pages/login/login';
 
 import { UserService } from '../providers/user-service';
 import { TasksService } from '../providers/tasks-service';
+import { TasksServiceStorage } from '../providers/tasks-service-storage';
+import { AuthService} from '../providers/auth-service';
 
 import { TabTasksPage } from '../pages/tab-tasks/tab-tasks';
 import { TasksPage } from '../pages/tasks/tasks';
 import { TasksDonePage } from '../pages/tasks-done/tasks-done';
 
+import { Storage } from '@ionic/storage';
+
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC99HZB7tlvoLxB15FOvA0YpDAiqEKohNs",
+  authDomain: "todosapp-edee7.firebaseapp.com",
+  databaseURL: "https://todosapp-edee7.firebaseio.com",
+  storageBucket: "todosapp-edee7.appspot.com",
+  messagingSenderId: "294127527512"
+};
+
+const myFirebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
+}
 
 const config = {
   tabsHideOnSubPages: true,
@@ -51,10 +70,12 @@ const config = {
     UsersPage,
     TabTasksPage,
     TasksPage,
-    TasksDonePage
+    TasksDonePage,
+    LoginPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp, config)
+    IonicModule.forRoot(MyApp, config),
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -74,12 +95,16 @@ const config = {
     UsersPage,
     TabTasksPage,
     TasksPage,
-    TasksDonePage
+    TasksDonePage,
+    LoginPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Storage,
     UserService,
-    TasksService
+    TasksService,
+    TasksServiceStorage,
+    AuthService
   ]
 })
 export class AppModule {}
