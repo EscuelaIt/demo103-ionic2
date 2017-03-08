@@ -14,7 +14,7 @@
 <ion-content>
   <button ion-button (click)="createTask()">Crear Tarea</button>
   <ion-list>
-    <ion-item-sliding *ngFor="let task of tasks; let i = index">
+    <ion-item-sliding *ngFor="let task of tasks | async; let i = index ">
       <ion-item >
         <ion-label>{{task.title}}</ion-label>
         <ion-checkbox (ionChange)="editTask( task )" [checked]="task.completed" [(ngModel)]='task.completed'></ion-checkbox>

@@ -19,6 +19,7 @@ import { LoginPage } from '../pages/login/login';
 import { UserService } from '../providers/user-service';
 import { TasksService } from '../providers/tasks-service';
 import { TasksServiceStorage } from '../providers/tasks-service-storage';
+import { TasksServiceFirebase } from '../providers/tasks-service-firebase';
 import { AuthService} from '../providers/auth-service';
 
 import { TabTasksPage } from '../pages/tab-tasks/tab-tasks';
@@ -104,7 +105,8 @@ const config = {
     UserService,
     TasksService,
     TasksServiceStorage,
-    AuthService
+    AuthService,
+    TasksServiceFirebase
   ]
 })
 export class AppModule {}
