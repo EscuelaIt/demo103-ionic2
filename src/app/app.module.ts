@@ -26,7 +26,7 @@ import { TabTasksPage } from '../pages/tab-tasks/tab-tasks';
 import { TasksPage } from '../pages/tasks/tasks';
 import { TasksDonePage } from '../pages/tasks-done/tasks-done';
 
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
@@ -76,7 +76,8 @@ const config = {
   ],
   imports: [
     IonicModule.forRoot(MyApp, config),
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -101,7 +102,6 @@ const config = {
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Storage,
     UserService,
     TasksService,
     TasksServiceStorage,

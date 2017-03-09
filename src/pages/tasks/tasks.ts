@@ -103,6 +103,7 @@ export class TasksPage {
       console.log(error)
     })*/
     this.tasks = this.databaseFire.list('/tasks')
+    this.databaseFire.object('id-casssss/xxxx')
   }
 
 }

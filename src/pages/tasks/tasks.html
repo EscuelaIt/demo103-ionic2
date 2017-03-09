@@ -12,6 +12,10 @@
 
 
 <ion-content>
+  <div *ngIf="obj">
+    <p>{{obj.assa}}</p>
+  </div>
+    
   <button ion-button (click)="createTask()">Crear Tarea</button>
   <ion-list>
     <ion-item-sliding *ngFor="let task of tasks | async; let i = index ">
