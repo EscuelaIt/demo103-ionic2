@@ -12,6 +12,8 @@
   <button ion-button color="dark" (click)="goToBack()">back</button>
 
   <form novalidate [formGroup]="registerForm" (ngSubmit)="saveData()">
+    <button ion-button (click)="takePicture()">tomar foto</button>
+    <img *ngIf="avatar" [src]="avatar" alt="avatar">
     <ion-list>
       <ion-grid no-padding>
         <ion-row no-padding>

@@ -3,6 +3,7 @@ import { NavController, MenuController } from 'ionic-angular';
 
 import { RegisterPage } from '../register/register';
 import { LoginPage } from '../login/login';
+import { MapPage } from '../map/map';
 
 @Component({
   selector: 'page-tutorial',
@@ -25,6 +26,10 @@ export class TutorialPage {
 
   goToLoginPage(){
     this.navCtrl.push( LoginPage );
+  }
+
+  goToMapPage(){
+    this.navCtrl.push( MapPage );
   }
 
 }

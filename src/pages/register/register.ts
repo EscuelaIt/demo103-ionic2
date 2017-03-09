@@ -8,6 +8,8 @@ import { TutorialPage } from '../tutorial/tutorial';
 import { MyValidators } from '../../validators/validators';
 import { AuthService } from '../../providers/auth-service';
 
+import { Camera } from 'ionic-native';
+
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html'
@@ -17,6 +19,7 @@ export class RegisterPage {
   myPage = TutorialPage;
   registerForm: FormGroup;
   newUser: any = {};
+  avatar: string = null;
 
   constructor(
     public navCtrl: NavController,
@@ -73,6 +76,21 @@ export class RegisterPage {
       let password = this.registerForm.value.passwordGroup.repeatPassword;
       this.authService.register(email, password);
     }
+  }
+
+  takePicture(){
+    let options = {
+      quality: 90,
+      destinationType: Camera.DestinationType.DATA_URL,
+      allowEdit: true,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      targetWidth: 1000,
+      targetHeight: 1000
+    }
+    Camera.getPicture(options)
+    .then(imgData =>{
+      this.avatar = 'data:image/jpeg;base64,' + imgData;
+    })
   }
 
 }

@@ -15,6 +15,7 @@ import { PastEventsPage } from '../pages/past-events/past-events';
 import { GalleryPage } from '../pages/gallery/gallery';
 import { UsersPage } from '../pages/users/users';
 import { LoginPage } from '../pages/login/login';
+import { MapPage } from '../pages/map/map';
 
 import { UserService } from '../providers/user-service';
 import { TasksService } from '../providers/tasks-service';
@@ -72,7 +73,8 @@ const config = {
     TabTasksPage,
     TasksPage,
     TasksDonePage,
-    LoginPage
+    LoginPage,
+    MapPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, config),
@@ -98,7 +100,8 @@ const config = {
     TabTasksPage,
     TasksPage,
     TasksDonePage,
-    LoginPage
+    LoginPage,
+    MapPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -9,6 +9,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { InvitePage } from '../pages/invite/invite';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TabTasksPage } from '../pages/tab-tasks/tab-tasks';
+import { MapPage } from '../pages/map/map';
 
 import { AngularFireAuth } from 'angularfire2';
 
@@ -33,6 +34,10 @@ export class MyApp {
     {
       title: 'Invite',
       component: InvitePage
+    },
+    {
+      title: 'Map',
+      component: MapPage
     }
   ]
 
