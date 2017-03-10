@@ -27,6 +27,8 @@ import { TabTasksPage } from '../pages/tab-tasks/tab-tasks';
 import { TasksPage } from '../pages/tasks/tasks';
 import { TasksDonePage } from '../pages/tasks-done/tasks-done';
 
+import { ReversePipe } from '../pipes/reverse';
+
 import { IonicStorageModule } from '@ionic/storage';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
@@ -74,7 +76,8 @@ const config = {
     TasksPage,
     TasksDonePage,
     LoginPage,
-    MapPage
+    MapPage,
+    ReversePipe
   ],
   imports: [
     IonicModule.forRoot(MyApp, config),
